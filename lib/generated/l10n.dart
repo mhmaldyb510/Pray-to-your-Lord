@@ -55,9 +55,9 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Islamic Companion`
+  /// `Pray to your Lord`
   String get title {
-    return Intl.message('Islamic Companion', name: 'title', desc: '', args: []);
+    return Intl.message('Pray to your Lord', name: 'title', desc: '', args: []);
   }
 
   /// `The Holy Quran`

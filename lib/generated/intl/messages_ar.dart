@@ -31,6 +31,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "quran": MessageLookupByLibrary.simpleMessage("القرأن الكريم"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
-    "title": MessageLookupByLibrary.simpleMessage("رفيق المسلم"),
+    "title": MessageLookupByLibrary.simpleMessage("ادع ربك"),
   };
 }
