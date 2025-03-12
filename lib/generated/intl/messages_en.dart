@@ -32,5 +32,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "title": MessageLookupByLibrary.simpleMessage("Pray to your Lord"),
+    "total": MessageLookupByLibrary.simpleMessage("Total"),
   };
 }

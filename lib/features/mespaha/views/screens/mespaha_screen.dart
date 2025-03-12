@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_companion/core/themes/light_theme.dart';
-import 'package:muslim_companion/features/mespaha/mespaha_cubit.dart';
+import 'package:muslim_companion/features/mespaha/cubit/mespaha_cubit.dart';
+import 'package:muslim_companion/features/mespaha/views/widgets/zekr_tile.dart';
 import 'package:muslim_companion/generated/l10n.dart';
 
 class MespahaScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class MespahaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MespahaCubit(),
-      child: BlocBuilder<MespahaCubit, int>(
+      child: BlocBuilder<MespahaCubit, MespahaState>(
         builder: (context, state) {
           return SingleChildScrollView(
             child: Column(
@@ -39,12 +40,23 @@ class MespahaScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Text(
-                    BlocProvider.of<MespahaCubit>(context).state.toString(),
-                    style: const TextStyle(
-                      color: LightTheme.kSecondaryColor,
-                      fontSize: 50,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        BlocProvider.of<MespahaCubit>(
+                          context,
+                        ).current.toString(),
+                        style: const TextStyle(
+                          color: LightTheme.kSecondaryColor,
+                          fontSize: 50,
+                        ),
+                      ),
+                      SizedBox(height: MediaQuery.sizeOf(context).width / 10),
+                      Text(
+                        '${S.of(context).total}: ${BlocProvider.of<MespahaCubit>(context).total}',
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -87,6 +99,32 @@ class MespahaScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(height: 20),
+                ZekrTile(
+                  zekr: 'سبحان الله',
+                  isSelected:
+                      BlocProvider.of<MespahaCubit>(context).zekrIndex == 0,
+                  onTap:
+                      () =>
+                          BlocProvider.of<MespahaCubit>(context).changeZekr(0),
+                ),
+
+                ZekrTile(
+                  zekr: 'استغفر الله العظيم',
+                  isSelected:
+                      BlocProvider.of<MespahaCubit>(context).zekrIndex == 1,
+                  onTap:
+                      () =>
+                          BlocProvider.of<MespahaCubit>(context).changeZekr(1),
+                ),
+                ZekrTile(
+                  zekr: 'لا إله إلا الله',
+                  isSelected:
+                      BlocProvider.of<MespahaCubit>(context).zekrIndex == 2,
+                  onTap:
+                      () =>
+                          BlocProvider.of<MespahaCubit>(context).changeZekr(2),
                 ),
               ],
             ),

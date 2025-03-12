@@ -32,5 +32,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "title": MessageLookupByLibrary.simpleMessage("ادع ربك"),
+    "total": MessageLookupByLibrary.simpleMessage("المجموع"),
   };
 }

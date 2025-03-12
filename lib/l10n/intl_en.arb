@@ -10,6 +10,7 @@
     "qiblah" : "Qiblah Direction",
     "home" : "Home",
     "prayerTimes" : "Prayer Times",
+    "total" : "Total",
     
     
     "@prayerTimes": {},
