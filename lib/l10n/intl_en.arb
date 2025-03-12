@@ -1,0 +1,25 @@
+{
+    "@@locale": "en",
+    "title" : "Islamic Companion",
+    "quran" : "The Holy Quran",
+    "ayat" : "verses",
+    "settings" : "Settings",
+    "language" : "Language",
+    "masbaha" : "Digital Masbaha",
+    "reset" : "Reset",
+    "qiblah" : "Qiblah Direction",
+    "home" : "Home",
+    "prayerTimes" : "Prayer Times",
+    
+    
+    "@prayerTimes": {},
+    "@qiblah": {},
+    "@home": {},
+    "@reset": {},
+    "@masbaha": {},
+    "@language": {},
+    "@settings": {},
+    "@ayat": {},
+    "@quran": {},
+    "@title": {}
+}
