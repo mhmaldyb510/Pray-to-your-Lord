@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:muslim_companion/core/data/quran.dart';
 import 'package:muslim_companion/core/themes/light_theme.dart';
 import 'package:muslim_companion/features/quran/views/screens/reading_screen.dart';
 import 'package:muslim_companion/features/quran/views/widgets/number_circle.dart';
 import 'package:muslim_companion/generated/l10n.dart';
+import 'package:quran_library/quran_library.dart';
 
 class SourTile extends StatelessWidget {
-  final AyatSour sour;
+  final SurahNamesModel  sour;
   final bool? isFirst;
   final bool? isLast;
-  const SourTile({super.key, this.isFirst, this.isLast, required this.sour});
+  const SourTile({super.key, this.isFirst, this.isLast, required this.sour,});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SourTile extends StatelessWidget {
         Navigator.push(
           context,
           CupertinoPageRoute(
-            builder: (context) => ReadingScreen(index: sour.index),
+            builder: (context) => ReadingScreen(index: sour.number),
           ),
         );
       },
@@ -48,7 +48,7 @@ class SourTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            NumberCircle(number: sour.index),
+            NumberCircle(number: sour.number),
             const SizedBox(width: 10),
             Expanded(
               flex: 10,
@@ -57,21 +57,21 @@ class SourTile extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    getSurahEnglishName(sour.arName),
+                    sour.englishName,
                     style: LightTheme.kNormalTextStyle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    '${sour.ayat} ${S.of(context).ayat}',
+                    '${sour.ayahsNumber} ${S.of(context).ayat}',
                     style: LightTheme.kInfoTextStyle,
                   ),
                 ],
               ),
             ),
             const Spacer(),
-            Text(sour.arName, style: LightTheme.kNormalTextStyle),
+            Text(sour.name, style: LightTheme.kNormalTextStyle),
           ],
         ),
       ),

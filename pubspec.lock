@@ -512,10 +512,9 @@ packages:
   quran_library:
     dependency: "direct main"
     description:
-      name: quran_library
-      sha256: f44cf0413aed37ad09ac806b4f02b79bf40d15f9071780ca52d4c0ca06baaeb9
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/quran_library_custom_package"
+      relative: true
+    source: path
     version: "0.1.3"
   shared_preferences:
     dependency: "direct main"
