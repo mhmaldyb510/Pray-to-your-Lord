@@ -23,18 +23,18 @@ class _QiblaSectionState extends State<QiblaSection> {
 
   Future<void> _checkLocationStatus() async {
     try {
-  final locationStatus = await FlutterQiblah.checkLocationStatus();
-  if (locationStatus.enabled &&
-      locationStatus.status == LocationPermission.denied) {
-    await FlutterQiblah.requestPermissions();
-    final s = await FlutterQiblah.checkLocationStatus();
-    _locationStreamController.sink.add(s);
-  } else {
-    _locationStreamController.add(locationStatus);
-  }
-} on Exception catch (e) {
-  debugPrint(e.toString());
-}
+      final locationStatus = await FlutterQiblah.checkLocationStatus();
+      if (locationStatus.enabled &&
+          locationStatus.status == LocationPermission.denied) {
+        await FlutterQiblah.requestPermissions();
+        final s = await FlutterQiblah.checkLocationStatus();
+        _locationStreamController.sink.add(s);
+      } else {
+        _locationStreamController.add(locationStatus);
+      }
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
@@ -57,9 +57,7 @@ class _QiblaSectionState extends State<QiblaSection> {
         stream: stream,
         builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.data!.enabled == true) {
             switch (snapshot.data!.status) {
@@ -68,9 +66,7 @@ class _QiblaSectionState extends State<QiblaSection> {
                 return const QiblaCompassWidget();
 
               case LocationPermission.denied:
-                return const Center(
-                  child: Text('Location permission denied'),
-                );
+                return const Center(child: Text('Location permission denied'));
               case LocationPermission.deniedForever:
                 return const Center(
                   child: Text('Location permission permanently denied'),
@@ -100,15 +96,13 @@ class _QiblaCompassWidgetState extends State<QiblaCompassWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 20),
-         Text(S.of(context).qiblah, style: LightTheme.kH3TextStyle),
+        Text(S.of(context).qiblah, style: LightTheme.kH3TextStyle),
         const SizedBox(height: 20),
         StreamBuilder(
           stream: FlutterQiblah.qiblahStream,
           builder: (context, AsyncSnapshot<QiblahDirection> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
 
             final qiblahDirection = snapshot.data!;
@@ -118,16 +112,22 @@ class _QiblaCompassWidgetState extends State<QiblaCompassWidget> {
                 Container(
                   width: 150,
                   height: 150,
-                  margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 0,
+                    vertical: 0,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xfff8f9fa),
                     borderRadius: BorderRadius.circular(75),
-                    border: Border.all(color: const Color(0xff27ae60), width: 5),
+                    border: Border.all(
+                      color: const Color(0xff27ae60),
+                      width: 5,
+                    ),
                   ),
                   alignment: Alignment.center,
                 ),
                 Transform.rotate(
-                  angle: (qiblahDirection.direction * pi / 180) - 3 * pi / 4,
+                  angle: -(qiblahDirection.qiblah * pi / 180),
                   child: const Icon(
                     FlutterIslamicIcons.qibla,
                     size: 145,
