@@ -29,12 +29,13 @@ Future<List<PrayerModel>> getPrayerTimes() async {
     Map<String, dynamic> jsonData =
         response.data['data']['timings'] as Map<String, dynamic>;
     List<PrayerModel> prayers = [];
+    var pref = await SharedPreferences.getInstance();
+
+    // Cache the current date
+    await pref.setString('cachedDate', date);
+
     for (String key in jsonData.keys) {
-      log(
-        "prayers.add(PrayerModel(name: '$key', time: pref.getString('$key')));",
-      );
       prayers.add(PrayerModel(name: key, time: jsonData[key]));
-      var pref = await SharedPreferences.getInstance();
       await pref.setString(key, jsonData[key]);
     }
     return prayers;
@@ -47,6 +48,13 @@ Future<List<PrayerModel>> getPrayerTimes() async {
 getPrayerFromCache() async {
   var pref = await SharedPreferences.getInstance();
   List<PrayerModel> prayers = [];
+
+  // Check if the cached date matches today's date
+  String? cachedDate = pref.getString('cachedDate');
+  String todayDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  if (cachedDate != todayDate) {
+    return prayers; // Return empty list if the cached date is not today
+  }
 
   if (pref.getString('Fajr') != null) {
     prayers.add(PrayerModel(name: 'Fajr', time: pref.getString('Fajr')!));
