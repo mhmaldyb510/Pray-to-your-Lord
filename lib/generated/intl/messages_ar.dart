@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ayat": MessageLookupByLibrary.simpleMessage("آية"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
-    "masbaha": MessageLookupByLibrary.simpleMessage("المسبحة الإلكترونية"),
+    "masbaha": MessageLookupByLibrary.simpleMessage("المسبحة"),
     "prayerTimes": MessageLookupByLibrary.simpleMessage("وقت الصلاة"),
     "qiblah": MessageLookupByLibrary.simpleMessage("اتجاه القبلة"),
     "quran": MessageLookupByLibrary.simpleMessage("القرأن الكريم"),
