@@ -38,9 +38,12 @@ class PrayerTimesList extends StatelessWidget {
                   children: prayers.map((e) => PrayerTile(prayer: e)).toList(),
                 );
               } else if (snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              } else {
+                debugPrint(snapshot.error.toString());
+                return Text('something went wrong please try again later');
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
+              } else {
+                return SizedBox.shrink();
               }
             },
           ),
